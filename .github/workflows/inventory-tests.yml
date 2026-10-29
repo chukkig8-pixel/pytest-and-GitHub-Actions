@@ -1,3 +1,4 @@
+
 name: Inventory Management Unit Tests
 
 on:
@@ -8,8 +9,12 @@ on:
 
 jobs:
   test:
-    name: Run Pytest
+    name: Run Inventory Pytest
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: inventory-management-system
 
     steps:
       - name: Checkout repository
@@ -19,12 +24,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: "pip"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run unit tests
+      - name: Run inventory unit tests
         run: python -m pytest -v
